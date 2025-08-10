@@ -28,7 +28,9 @@ public class FilterTaskAuth extends OncePerRequestFilter{
 
                 var servletPath = request.getServletPath();
 
-                if(servletPath.equals("/tasks/")){
+                System.out.println("PATH" + servletPath);
+
+                if(servletPath.startsWith("/tasks/")){
 
 
                     // Pegar o usuário e senha
@@ -51,7 +53,7 @@ public class FilterTaskAuth extends OncePerRequestFilter{
                 // Validar usuário
 
                 var user = this.userRepository.findByUsername(username);
-
+                
                 if(user == null){
 
                     response.sendError(401);
